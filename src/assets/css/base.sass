@@ -1,2 +1,60 @@
+@import '_reset'
+@import 'functions'
+
+$font-size-base: 16px
+$color-fff: #fff
+$color-000: #000
+
 body
-  background-color: #ff0
+  margin: 0
+
+#header
+  display: inline-block
+  width: 100%
+  background-color: rgba(0,0,0,1)
+  text-align: center
+  font-size: $font-size-base
+  .container
+    display: inline-block
+    max-width: 940px
+    margin: 0 auto
+    width: 100%
+    > *
+      float: left
+      display: inline-block
+      height: 70px
+      line-height: 70px
+      
+    .logo
+      width: 150px
+      font-size: 1.5em
+      font-weight: 900
+      color: $color-fff
+      float: left
+    .user
+      width: 60px
+      font-size: 1em
+      color: $color-fff
+      font-weight: 900
+      float: right
+    .menu
+      width: calc(100% - 210px)
+      & a
+        display: inline-block
+        padding: 0 1em
+        float: left
+        text-decoration: none
+        font-weight: 900
+        font-size: 1em
+        color: $color-fff
+        position: relative
+        &:hover:after, &:active:after
+          content: ''
+          position: absolute
+          bottom: -3px
+          left: 0
+          border-bottom: 3px solid $color-fff
+          width: 100%
+        
+        &.active
+          border-bottom: 3px solid $color-fff
