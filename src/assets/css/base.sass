@@ -5,6 +5,9 @@ $font-size-base: 16px
 $color-fff: #fff
 $color-000: #000
 $color-f2f: #f2f2f2
+$color-light-green: #7ED321
+$checkbox-size: 20px
+$color-9b: #9b9b9b
 
 html, body 
   background-color: $color-f2f
@@ -15,7 +18,11 @@ body
 section, div, span 
   // border: 1px solid red
   font-family: 'HelveticaNeue-Medium, Arial, sans-serif'
-    
+
+.bg-green
+  background-color: $color-light-green
+.bg-gray
+  background-color: $color-9b
 
 #header
   display: inline-block
@@ -73,5 +80,63 @@ section
     padding: 30px 15px
     @media(min-width: 768px)
       padding: 30px 10% 30px 10%
-  
+
+.checkbox
+  display: inline-block
+  position: relative
+  +size($checkbox-size)
+  cursor: pointer
+  > input[type='checkbox']
+    position: absolute
+    left: 0
+    top: 0
+    display: inline-block
+    z-index: 1
+    border: 1px solid rgba(255, 0, 0, .3)
+    opacity: 0
+    &:checked
+      + span
+        background-color: $color-000
+        color: $color-fff
+        &:before
+          display: inline-block
+  > span
+    position: relative
+    z-index: 2
+    display: inline-block
+    +size($checkbox-size)
+    line-height: $checkbox-size
+    border: 1px solid $color-000
+    border-radius: 2px
+    font-family: 'Font Awesome 5 Free'
+    &:before
+      font-family: 'Font Awesome 5 Free'
+      content: '\F00C'
+      font-size: 14px
+      text-align: center
+      display: none
+      position: absolute
+      left: 0
+      top: 0
+      +size(100%,100%)
+      font-style: normal
+      font-variant: normal
+      text-rendering: auto
+      font-weight: 900
+      -webkit-font-smoothing: antialiased
     
+table.table-frame
+  width: 100%
+  border-spacing: 0
+  font-size: $font-size-base
+  thead
+    tr
+      th
+        height: 40px
+        line-height: 40px
+        text-align: center
+        font-weight: 600
+        font-size: 1em
+        color: $color-000
+        background-color: $color-fff 
+  
