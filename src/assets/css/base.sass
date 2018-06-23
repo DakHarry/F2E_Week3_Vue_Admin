@@ -4,9 +4,18 @@
 $font-size-base: 16px
 $color-fff: #fff
 $color-000: #000
+$color-f2f: #f2f2f2
 
+html, body 
+  background-color: $color-f2f
+  font-family: 'HelveticaNeue-Medium, Arial, sans-serif'
 body
   margin: 0
+
+section, div, span 
+  // border: 1px solid red
+  font-family: 'HelveticaNeue-Medium, Arial, sans-serif'
+    
 
 #header
   display: inline-block
@@ -16,9 +25,9 @@ body
   font-size: $font-size-base
   .container
     display: inline-block
-    max-width: 940px
     margin: 0 auto
     width: 100%
+    padding: 0px
     > *
       float: left
       display: inline-block
@@ -58,3 +67,11 @@ body
         
         &.active
           border-bottom: 3px solid $color-fff
+
+section
+  .container
+    padding: 30px 15px
+    @media(min-width: 768px)
+      padding: 30px 10% 30px 10%
+  
+    

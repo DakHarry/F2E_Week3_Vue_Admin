@@ -1,0 +1,188 @@
+@import 'functions'
+
+$font-size-base: 16px
+$title-bolder: 900
+$color-000: #000000
+$color-fff: #fff
+$color-light-gray: #9b9b9b
+$color-75: #757575
+$color-eb: #ebebeb
+$color-9b: #9b9b9b
+$color-main-green: #7ed321
+$color-main-red: #d0021b
+$color-main-blue: #4a90e2
+$font-famliy-bold: 'HelveticaNeue-Bold'
+section#overview-wrapper
+    font-size: $font-size-base
+
+.overview-title-wrapper
+    display: flex
+    margin-bottom: 18px
+
+    & .overview-title
+        flex: 1
+        line-height: 28px
+        color: $color-000
+        font-size: 1.75em
+        font-weight: $title-bolder
+    & .overview-date-wrapper
+        flex: 1
+        text-align: right
+        font-size: 1em
+        color: $color-light-gray
+        line-height: 28px
+
+.card
+    background-color: $color-fff
+    border: 1px solid $color-eb
+    text-align: center
+    padding: 10px
+    padding-top: 30px
+    box-shadow: 0 0 10px 5px $color-eb
+    border-radius: 3px
+    margin-bottom: 20px
+    & h2.card-title 
+        font-size: $font-size-base*1.5
+        color: $color-000
+        font-weight: $title-bolder
+        margin-bottom: $font-size-base
+
+    & h3.card-title
+        font-size: $font-size-base
+        color: $color-000
+        font-weight: $title-bolder
+        margin-bottom: $font-size-base
+
+.overview-card-wrapper
+    display: flex
+    .card
+        flex: 1
+        &:nth-child(2)
+            margin: 0 20px 20px 20px
+        & .card-amount
+            font-family: 'HelveticaNeue-Bold'
+            font-size: 2.25em
+            line-height: 44px
+            margin-bottom: 20px
+            font-weight: 900
+            display: inline-block
+            &.green
+                color: $color-main-green
+            &.red
+                color: $color-main-red
+            &.blue
+                color: $color-main-blue
+
+.anaylsis-wrapper
+    display: flex
+    justify-content: space-between
+    flex-direction: column
+    @media (min-width: 768px)
+        flex-direction: initial
+    .card
+        width: 100%
+        padding: 0px
+        padding-top: 30px
+        @media (min-width: 768px)
+            width: 46%
+        & h2
+            text-align: left
+            margin-left: 20px
+            margin-right: 20px
+        & div.website
+            display: flex
+            flex-direction: row
+            align-items: center
+            margin: 0 20px 13px 20px
+            border-bottom: 1px solid $color-eb
+            padding: 24px 0
+            &:nth-child(4)
+                border: 0
+            & .site-logo
+                flex: 1
+                & i
+                    font-size: 2.5em
+            & .site-title
+                flex: 3
+                font-size: 1em
+                color: $color-9b
+            & .site-income
+                flex: 2
+                font-size: 1.25em
+                text-align: right
+                color: $color-000
+                font-weight: 600
+            & .site-ratio
+                flex: 1
+                font-size: 1em
+                &.growth
+                    color: $color-main-green
+                &.decline
+                    color: $color-main-red
+        & .lastest-order-wrapper
+            display: flex
+            flex-direction: column
+            & div.order
+                display: flex
+                flex-direction: row
+                margin: 0 20px 0px 20px
+                border-bottom: 1px solid $color-eb
+                padding: 8px 0
+                & .order-pic
+                    flex: 1
+                    & img
+                        +size(100px,100px)
+                & .order-info
+                    flex: 2
+                    display: flex
+                    flex-direction: column
+                    justify-content: flex-end
+                    text-align: left
+                    padding-left: 5px
+                    & h3, div
+                        margin-bottom: 8px
+                    & h3
+                        font-family: $font-famliy-bold
+                        font-size: 1.25em
+                        font-weight: $title-bolder
+                        color: $color-000
+                    & div
+                        color: $color-75
+                        font-size: 1em
+                        text-align: left
+                        & i
+                            +size(10px,10px)
+                            font-size: 10px
+                            margin-right: 7px
+                & .order-total
+                    flex: 1
+                    display: flex
+                    flex-direction: column
+                    justify-content: flex-end
+                    & h5
+                        font-size: 1em
+                        line-height: 1em
+                        text-align: right
+                        color: $color-000
+                    & div
+                        font-size: 1.25em
+                        line-height: 25px
+                        color: $color-000
+                        font-family: $font-famliy-bold
+                        font-weight: $title-bolder
+                        text-align: right
+
+
+.activity-wrapper
+    h2
+        text-align: left
+        font-size: 24px
+        color: $color-000
+        font-weight: $title-bolder
+        font-family: $font-famliy-bold
+        margin-bottom: 16px
+  
+
+    
+
+    
