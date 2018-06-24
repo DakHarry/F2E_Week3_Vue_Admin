@@ -1,0 +1,199 @@
+@import 'functions'
+@import '_variables'
+
+section#add-product-wrapper
+    position: fixed
+    left: 0
+    top: 0
+    display: none
+    +size(100%)
+    z-index: 999
+    background-color: rgba(0, 0, 0, .5)
+    &.active
+        display: inline-block
+    .add-frame
+        font-size: $font-size-base
+        position: absolute
+        left: 50%
+        transform: translateX(-50%)
+        top: 80px
+        display: inline-block
+        width: 940px
+        height: calc(100% - 100px)
+        background-color: $color-fff
+        border-radius: 4px
+        z-index: 2
+        box-shadow: 0 0 10px rgba(0, 0, 0, .5)
+        overflow: hidden
+        overflow-y: scroll
+        .add-head
+            display: inline-block
+            +size(100%, 64px)
+            line-height: 64px
+            padding-left: 35px
+            font-size: 1.5em
+            color: $color-fff
+            background-color: $color-000
+            font-weight: 600
+            text-align: left
+            
+            a.icon-close
+                position: absolute
+                right: 20px
+                top: 16px
+                display: inline-block
+                +size(22px)
+                line-height: 22px
+        
+        .add-body
+            display: flex
+            flex-direction: row
+            justify-content: space-between
+            padding: 30px
+            .left
+                flex: 1
+                width: 50%
+                margin-right: 15px
+                text-align: center
+                .upload
+                    display: inline-block
+                    width: 100%
+                    line-height: 35px
+                    font-size: 30px
+                    padding: 30px 0
+                    color: $color-75
+                    background-color: $color-eb
+                    cursor: pointer
+                b
+                    display: inline-block
+                    width: 100%
+                    font-size: 1rem
+                    height: 22px
+                    line-height: 22px
+                    color: $color-75
+                .imgs-view
+                    display: inline-block
+                    margin-top: 8px
+                    width: 100%
+                    text-align: left
+                    div
+                        display: inline-block
+                        +size(126px)
+                        overflow: hidden
+                        img
+                            +size(126px)
+                        &:nth-child(3n + 2)
+                            margin-left: 8px
+                            margin-right: 8px
+                        &:nth-child(n + 4)
+                            margin-top: 8px
+
+            .right
+                flex: 1
+                width: 50%
+                display: flex
+                flex-direction: column
+                text-align: left
+                > b
+                    height: 22px
+                    line-height: 22px
+                > input
+                    margin-top: 8px
+                > textarea
+                    margin-top: 8px
+                    height: 122px
+                    line-height: 21px
+                    padding: 8px 16px
+                    color: $color-000
+                .set-box
+                    display: flex
+                    flex-direction: row
+                    border: 1px solid $color-55
+                    border-radius: 4px
+                    overflow: hidden
+                    margin-right: 8px
+                    span, input
+                        flex: 1
+                        height: 38px
+                        line-height: 38px
+                        padding: 0
+                    span
+                        background-color: $color-cc
+                        color: $color-55
+                        font-size: 1rem
+                        text-align: center
+                        padding: 0 10px
+                        border-right: 1px solid
+                    input, select
+                        text-align: right
+                        font-size: 1rem
+                        color: $color-000
+                        border: 0
+                        width: 100px
+                        &:focus
+                            outline: 0
+                .price-setter
+                    display: flex
+                    flex-direction: row
+                    div
+                        flex: 1
+                .specific-setter
+                    display: flex
+                    flex-direction: row
+                    div
+                        flex: 1
+                    .set-box
+                        input
+                            width: 78px
+                .add-size
+                    display: inline-block
+                    text-align: center
+                    +size(100%, 38px)
+                    line-height: 38px
+                    background-color: $color-000
+                    font-weight: 600
+                    font-size: 1rem
+                    color: $color-fff
+                    text-decoration: none
+                    border: 1px solid $color-000
+                    border-radius: 4px
+                    margin-top: 8px
+                    i
+                        line-height: 38px
+                        margin-left: 8px
+
+        .add-footer
+            width: 100%
+            .submit-btn
+                width: 100%
+                height: 48px
+                text-align: right
+                a, button
+                    display: inline-block
+                    height: 36px
+                    line-height: 36px
+                    cursor: pointer
+                a
+                    text-decoration: none
+                    padding: 0 12px
+                    font-weight: 600
+                    font-size: 1rem
+                    color: $color-75
+                    &:hover
+                        border: solid 1px $color-75
+                button
+                    border: 0
+                    width: 100px
+                    background-color: $color-000
+                    color: $color-fff
+                    font-size: 1rem
+                    border-radius: 4px   
+                    margin-right: 28px 
+                    &:hover, &:active
+                        border: 1px solid $color-000
+                        color: $color-000
+                        background-color: $color-fff
+                
+
+                    
+
