@@ -9,18 +9,18 @@
             </label>
           </div>
           <div class="add-p-btn">
-            <a id="add-btn" href="">Add New Product <i class="fas fa-plus"></i></a>
+            <a id="add-btn" @click="isToggleAddBtn = !isToggleAddBtn">Add New Product <i class="fas fa-plus"></i></a>
           </div>
         </div>
         <div class="table-wrapper">
           <table class="table-frame">
             <thead>
               <tr>
-                <th :key="index" v-for="(col, index) in tableHead">{{ col }}</th>
+                <th :key="'ph'+index" v-for="(col, index) in tableHead">{{ col }}</th>
               </tr>
             </thead>
             <tbody>
-              <tr :key="product.id" v-for="product in products">
+              <tr :key="'p'+pid" v-for="(product, pid) in products">
                 <td>
                   <label class="checkbox">
                     <input type="checkbox">
@@ -36,9 +36,9 @@
                 </td>
                 <td><span>${{product.discount}}</span></td>
                 <td colspan="3">
-                  <div class="size-frame" :key="s.size" v-for="s in product.sizes">
+                  <div class="size-frame" :key="pid+ '-size-'+ sid" v-for="(s, sid) in product.sizes">
                     <div class="size"><span>{{s.size}}</span></div>
-                    <div class="colors-frame" :key="color" v-for="color in s.colors">
+                    <div class="colors-frame" :key="pid + '-' + s.size +'-' + color.color" v-for="color in s.colors">
                       <div class="color"><span>{{color.color}}</span></div>
                       <div class="inventory"><span>{{color.inventory}}</span></div>
                     </div>
@@ -58,14 +58,21 @@
           </table>
         </div>
       </div>
+      <AddProduct :isToggle="isToggleAddBtn" v-on:closeBox="closeBox"></AddProduct>
     </section>
 </template>
 
 <script>
+import AddProduct from './AddProductComponent.vue'
+
 export default {
   name: 'Product',
+  components: {
+    AddProduct
+  },
   data () {
     return {
+      isToggleAddBtn: false,
       tableHead: ['Product', 'Original', 'Discount', 'Size', 'Color', 'Inventory', 'Status'],
       products: [
         {
@@ -170,8 +177,12 @@ export default {
     }
   },
   methods: {
-    isPublish(status) {
+    isPublish (status) {
       return status === 'published'
+    },
+    closeBox (result) {
+      // console.log('result' + result)
+      this.isToggleAddBtn = result
     }
   }
 }

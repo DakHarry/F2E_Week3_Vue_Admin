@@ -339,6 +339,7 @@ export default {
           }
         }
       })
+      console.log('chart', myLineChart)
     },
     getLabels () {
       let labels = []
