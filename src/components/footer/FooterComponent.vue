@@ -14,7 +14,8 @@ export default {
 
 <style lang="sass" scoped>
 footer
-    position: relative
+    position: fixed
+    width: 100%
     bottom: 0
     left: 0
     height: 34px
