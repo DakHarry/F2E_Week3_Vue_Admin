@@ -58,7 +58,7 @@
           </table>
         </div>
       </div>
-      <AddProduct :isToggle="isToggleAddBtn" v-on:closeBox="closeBox"></AddProduct>
+      <AddProduct :productLen="products.length" :isToggle="isToggleAddBtn" v-on:closeBox="closeBox"></AddProduct>
     </section>
 </template>
 
@@ -88,6 +88,7 @@ export default {
     closeBox (result) {
       // console.log('result' + result)
       this.isToggleAddBtn = result
+      this.scratchData()
     },
     changeStatus (pid, status) {
       console.log(pid)
@@ -108,13 +109,20 @@ export default {
       this.scratchData()
     },
     scratchData () {
+      console.log('run scratch')
       this.products = []
       let db = FirbaseApi.database()
       let datasets = db.ref('/products')
       datasets.on('value', (p) => {
-        for (let i = 0; i < p.val().length; i++) {
-          this.products.push(p.val()[i])
-        }
+        console.log('p', p.val())
+        p.forEach(e => {
+          console.log('pl', e.val())
+          this.products.push(e.val())
+        })
+        // for (let i = 0; i < p.val().length; i++) {
+        //   console.log(p.val())
+        //   this.products.push(p.val()[i])
+        // }
       })
     }
   }
