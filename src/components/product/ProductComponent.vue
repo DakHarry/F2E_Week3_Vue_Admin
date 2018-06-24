@@ -48,8 +48,8 @@
                   <div class="select-wrapper" :class="isPublish(product.status) ? 'bg-green' : 'bg-gray'">
                     <span>{{product.status}}<i class="fas fa-angle-down"></i></span>
                     <div class="select-list">
-                      <span>PUBLISHED </span>
-                      <span>UNPUBLISHED</span>
+                      <span @click="changeStatus(product.id, 'published')">PUBLISHED </span>
+                      <span @click="changeStatus(product.id, 'unpblished')">UNPUBLISHED</span>
                     </div>
                   </div>
                 </td>
@@ -64,6 +64,7 @@
 
 <script>
 import AddProduct from './AddProductComponent.vue'
+import { FirbaseApi } from '../../firebaseConfig.js'
 
 export default {
   name: 'Product',
@@ -74,107 +75,11 @@ export default {
     return {
       isToggleAddBtn: false,
       tableHead: ['Product', 'Original', 'Discount', 'Size', 'Color', 'Inventory', 'Status'],
-      products: [
-        {
-          id: 1,
-          name: 'Mauris non tem.',
-          pic: 'https://scontent-tpe1-1.xx.fbcdn.net/v/t1.0-9/22405942_1881658555185516_7339480286672590243_n.jpg?_nc_cat=0&_nc_eui2=AeG23_X4zeKBvSdcWZj6ZZuF4E7w5_CEaRh4V7qBXKgQDuZDj2lEWG-PHYvq1y3_IKxj3l45-ucU4dWRLpnLErgHuout0Z7xN5U7Pcsbqm0cTA&oh=7e483e1680805780aaf6ff52e562e653&oe=5BACC38F',
-          original: 3200,
-          discount: 2800,
-          sizes: [
-            {
-              size: 'L',
-              colors: [
-                {
-                  color: 'Gray',
-                  inventory: 15
-                },
-                {
-                  color: 'Black',
-                  inventory: 20
-                }
-              ]
-            },
-            {
-              size: 'M',
-              colors: [
-                {
-                  color: 'Gray',
-                  inventory: 15
-                },
-                {
-                  color: 'Black',
-                  inventory: 20
-                }
-              ]
-            },
-            {
-              size: 'S',
-              colors: [
-                {
-                  color: 'Gray',
-                  inventory: 15
-                },
-                {
-                  color: 'Black',
-                  inventory: 20
-                }
-              ]
-            }
-          ],
-          status: 'published'
-        },
-        {
-          id: 2,
-          name: 'Mauris non tem.',
-          pic: 'https://scontent-tpe1-1.xx.fbcdn.net/v/t1.0-9/22405942_1881658555185516_7339480286672590243_n.jpg?_nc_cat=0&_nc_eui2=AeG23_X4zeKBvSdcWZj6ZZuF4E7w5_CEaRh4V7qBXKgQDuZDj2lEWG-PHYvq1y3_IKxj3l45-ucU4dWRLpnLErgHuout0Z7xN5U7Pcsbqm0cTA&oh=7e483e1680805780aaf6ff52e562e653&oe=5BACC38F',
-          original: 3200,
-          discount: 2800,
-          sizes: [
-            {
-              size: 'L',
-              colors: [
-                {
-                  color: 'Gray',
-                  inventory: 15
-                },
-                {
-                  color: 'Black',
-                  inventory: 20
-                }
-              ]
-            },
-            {
-              size: 'M',
-              colors: [
-                {
-                  color: 'Gray',
-                  inventory: 15
-                },
-                {
-                  color: 'Black',
-                  inventory: 20
-                }
-              ]
-            },
-            {
-              size: 'S',
-              colors: [
-                {
-                  color: 'Gray',
-                  inventory: 15
-                },
-                {
-                  color: 'Black',
-                  inventory: 20
-                }
-              ]
-            }
-          ],
-          status: 'unpublished'
-        }
-      ]
+      products: []
     }
+  },
+  created () {
+    this.scratchData()
   },
   methods: {
     isPublish (status) {
@@ -183,6 +88,34 @@ export default {
     closeBox (result) {
       // console.log('result' + result)
       this.isToggleAddBtn = result
+    },
+    changeStatus (pid, status) {
+      console.log(pid)
+      console.log(status)
+      let originData = this.products[pid]
+      let db = FirbaseApi.database()
+      let data = db.ref('/products/' + pid)
+      console.log(originData)
+      data.set({
+        id: originData.id,
+        name: originData.name,
+        original: originData.original,
+        discount: originData.discount,
+        pic: originData.pic,
+        sizes: originData.sizes,
+        status: status
+      })
+      this.scratchData()
+    },
+    scratchData () {
+      this.products = []
+      let db = FirbaseApi.database()
+      let datasets = db.ref('/products')
+      datasets.on('value', (p) => {
+        for (let i = 0; i < p.val().length; i++) {
+          this.products.push(p.val()[i])
+        }
+      })
     }
   }
 }
